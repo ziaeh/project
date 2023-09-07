@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project_main</title>
+    <style>
+        header {
+        background: rgb(160, 240, 239);
+        height: 215px;
+        }
+        main {
+        background: #f9f9f9;
+        height: 215px;
+        }
+        footer {
+        background: rgb(180, 178, 178);
+        height: 310px;
+        }
+    </style>
+</head>
+<body>
+    <header>상단
+    <h1>project:시작페이지 </h1>
+    로그인 폼 보여줘야함
+    <form method="POST" action="" >
+        {% csrf_token %}
+        <div>
+            <label>사용자 ID</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div>
+            <label>비밀번호</label>
+            <input type="password" name="password" id="password">
+        </div>
+            <button type="submit">로그인</button>
+    </form>
+    </header>
+    <main>메인
+        {% if user_name and password %}
+        <p>사용자 정보</p>
+        <p>UserID: {{ user_name }}</p>
+        <p>비밀번호: {{ password }}</p>
+        {% endif %}
+        {% if messages %}
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+        {% endif %}
+    <br><a> mainpage 입니다.</a>
+    <a href="{% url 'enroll-page' %}" ><button type="button">회원가입 페이지 이동</button></a>
+    <a href="{% url 'self-page' %}" ><button type="button">뉴스 요약 페이지 이동</button></a>
+</main>
+
+
+    <footer>하단
+        
+    </footer>
+    <a>조 이름: project 1팀</a>
+    <a>홍석영,박장선,최현호,이은지,김혜인,한지애</a>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>news_page</title>
+    <style>
+        header {
+        background: rgb(160, 240, 239);
+        height: 215px;
+        }
+        main {
+        background: #f9f9f9;
+        height: 215px;
+        }
+        footer {
+        background: rgb(180, 178, 178);
+        height: 310px;
+        }
+    </style>
+</head>
+<body>
+    <header>상단
+    <h1>project:뉴스 기사 원문</h1>
+    <form method="POST">
+        <input type="text" name = "text_sum">
+        {% csrf_token %}
+        <button type="submit" id="sum_btn">요약</button>
+    </form>
+    <form method="POST">
+        <input type="text" name = "text_talk">
+        {% csrf_token %}
+        <button type="submit" id="talk_btn">구어체</button>   
+    </form>
+    </header>
+    <main>메인
+    <a> 요약된 내용 입니다.</a>
+    {% if messages %}
+    {% for message in messages %}
+        {% if 'summary' in message.tags %}
+            <p>{{ message }}</p>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+    <a href="{% url 'main-page' %}"><button type="button">메인 페이지</button></a>
+</main>
+    <footer>
+        <a> 구어체 내용</a>
+        {% if messages %}
+        {% for message in messages %}
+            {% if 'talk' in message.tags %}
+                <p>{{ message }}</p>
+            {% endif %}
+        {% endfor %}
+        {% endif %}  
+    </footer>
+    
+</body>
+</html>
